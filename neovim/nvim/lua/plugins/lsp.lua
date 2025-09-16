@@ -18,6 +18,7 @@ return {
         "yamlls",
         "html",
         "cssls",
+        "gopls"
       },
       automatic_installation = true,
     },
@@ -65,6 +66,13 @@ return {
         yamlls = {},
         html = {},
         cssls = {},
+        tinymist = {
+          settings = {
+            formatterMode = "typstyle",
+            exportPdf = "never",
+            semanticTokens = "disable"
+          }
+        }
       }
 
       for name, opts in pairs(servers) do
