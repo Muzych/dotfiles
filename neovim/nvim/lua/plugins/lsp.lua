@@ -20,7 +20,7 @@ return {
         "cssls",
         "gopls"
       },
-      automatic_installation = true,
+      automatic_enable = true,
     },
   },
   {
@@ -30,7 +30,6 @@ return {
       "hrsh7th/cmp-nvim-lsp",
     },
     config = function()
-      local lspconfig = require("lspconfig")
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       local ok_cmp, cmp_caps = pcall(require, "cmp_nvim_lsp")
       if ok_cmp then
@@ -66,6 +65,7 @@ return {
         yamlls = {},
         html = {},
         cssls = {},
+        gopls = {},
         tinymist = {
           settings = {
             formatterMode = "typstyle",
@@ -75,11 +75,17 @@ return {
         }
       }
 
+      -- 为各服务器设置（合并通用 capabilities/on_attach）
       for name, opts in pairs(servers) do
-        opts.capabilities = capabilities
-        opts.on_attach = on_attach
-        lspconfig[name].setup(opts)
+        local merged = vim.tbl_deep_extend("force", {
+          capabilities = capabilities,
+          on_attach = on_attach,
+        }, opts or {})
+        vim.lsp.config(name, merged)
       end
+
+      -- mason-lspconfig 会自动 enable 已安装的服务器；此处确保非 mason 管理的 tinymist 也被启用
+      vim.lsp.enable("tinymist")
     end,
   },
 }
