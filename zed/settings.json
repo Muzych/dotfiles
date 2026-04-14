@@ -1,0 +1,63 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "agent": {
+    "tool_permissions": {
+      "tools": {
+        "fetch": {
+          "default": "allow"
+        }
+      }
+    },
+    "default_model": {
+      "provider": "deepseek",
+      "model": "deepseek-chat",
+      "enable_thinking": false
+    },
+    "favorite_models": [],
+    "model_parameters": []
+  },
+  "agent_servers": {
+    
+  },
+  "icon_theme": "Catppuccin Mocha",
+  "vim_mode": false,
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  "theme": {
+    "mode": "dark",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Macchiato"
+  },
+  "terminal": {
+    "font_family": "FiraCode Nerd Font"
+  },
+  "show_completions_on_input": true,
+  "show_edit_predictions": false,
+  "languages": {
+    "Python": {
+      "language_servers": [
+        "ty",
+        "ruff",
+        "!basedpyright",
+        "!pyright",
+        "!pylsp"
+      ],
+      "formatter": {
+        "language_server": {
+          "name": "ruff"
+        }
+      },
+      "code_actions_on_format": {
+        "source.organizeImports.ruff": true
+      },
+      "format_on_save": "on"
+    }
+  }
+}
